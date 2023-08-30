@@ -1,0 +1,66 @@
+.loader {
+  position:absolute;
+  top:0px;
+  left:0px;
+  transform:translate(-50%,-50%);
+  width:100%;
+  height:100%;
+}
+.loader .corners {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  animation:loading 2s ease infinite;
+}
+.loader .corners span {
+  position:absolute;
+  width:20px;
+  height:20px;
+}
+.loader .corners span:nth-child(1) {
+  top:0px;
+  left:0px;
+  border-top:2px solid #fff;
+  border-left:2px solid #fff;
+}
+.loader .corners span:nth-child(2) {
+  top:0px;
+  right:0px;
+  border-top:2px solid #fff;
+  border-right:2px solid #fff;
+}
+.loader .corners span:nth-child(3) {
+  bottom:0px;
+  right:0px;
+  border-bottom:2px solid #fff;
+  border-right:2px solid #fff;
+}
+.loader .corners span:nth-child(4) {
+  bottom:0px;
+  left:0px;
+  border-bottom:2px solid #fff;
+  border-left:2px solid #fff;
+}
+.loader .box {
+  width:100%;
+  height:100%;
+  background-image: url({{ asset('img/loader.gif')}});
+  background-repeat: no-repeat;
+  position:absolute;
+  top:0px;
+  left:0px;
+  transform:translate(-0px,-0px);
+}
+@keyframes loading {
+  15% {
+    transform:scale(1.7);
+  }
+  50% {
+    transform:rotate(-88deg);
+  }
+  100% {
+    transform:rotate(-90deg);
+  }
+}
