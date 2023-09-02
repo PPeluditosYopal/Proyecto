@@ -26,7 +26,7 @@ public function show(RegistroMascota $registromascota)
     {
 
         return view('registromascota', compact('registromascota'));
-        return view('/registromascota')->with(['especies' => $especies, ]);
+        //return view('/registromascota')->with(['especies' => $especies, ]);
     }
 
 

@@ -75,12 +75,33 @@ public function show(Alerta $alerta)
         $Alerta->terminos = $request->input('terminos');
 
 
-        $basic  = new \Vonage\Client\Credentials\Basic("a479394e", "0Tb1cD2ubUDkGbrP");
+        $basic  = new \Vonage\Client\Credentials\Basic(env("VONAGE_KEY"), env("VONAGE_SECRET"));
         $client = new \Vonage\Client($basic);
 
         $response = $client->sms()->send(
-         new \Vonage\SMS\Message\SMS("573232110331", BRAND_NAME, 'Se acaba de generar una alerta: ' + 'nombre' + 'telefono' + 'dir_evento' + 'description' + 'evidencia' + 'terminos')
+         new \Vonage\SMS\Message\SMS("573024624027", env("BRAND_NAME"), 
+                'Se acaba de generar una alerta sobre maltrato animal: '
+                .' Nombre: '.$Alerta->nombre 
+                .'. Teléfono: '.$Alerta->telefono
+                .'. Dirección del evento: '.$Alerta->dir_evento
+                .'. Descripción: '.$Alerta->descripcion
+                .'. Evidencia: '.$Alerta->evidencia
+                .'. Términos y condiciones: '.$Alerta->terminos
+            ,'unicode'
+        )
+        
          );
+        //  $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS("573024624027", env("BRAND_NAME"), 'A text message sent using the Nexmo SMS API')
+        // );
+
+        //  $sms=         'Se acaba de generar una alerta sobre maltrato animal: '
+        //  .' Nombre: '.$Alerta->nombre 
+        //  .' Teléfono: '.$Alerta->telefono
+        //  .' Dirección del evento: '.$Alerta->dir_evento
+        //  .' Descripción: '.$Alerta->descripcion
+        //  .' Evidencia: '.$Alerta->evidencia
+        //  .' Términos y condiciones: '.$Alerta->terminos;
 
         $message = $response->current();
 
@@ -91,7 +112,7 @@ public function show(Alerta $alerta)
         }
 
        $Alerta->save();
-
+        //return response()->json($sms);
         /*dd($request->all());*/
         return view('alerta');
     }
