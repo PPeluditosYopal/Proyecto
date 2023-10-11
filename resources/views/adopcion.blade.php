@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!--->
+<!--
 
 La vista adopción, le permite al usuario poder realizar una solicitud formal de adopción ante la fundación protección peluditos yopal
 sobre sus deiferentes mascotas rescatadas.
@@ -7,7 +7,7 @@ sobre sus deiferentes mascotas rescatadas.
 Esta vista cuenta con un formulario de registro que al igual que los anteriores, apuntan al controller para validar, procesar y almacenar
 la información ingresada.
 
-</!--->
+--->
 
 @section('content')
 <div class="container">

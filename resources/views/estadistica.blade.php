@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-<!-->
+<!--
 
 Esta vista graficas sobre los diferentes datos almacenados en la base de datos.
 Para la representación de los graficos, usamos el servicio wed de Google Charts, que permite crear graficas dinamicas
 dentro de un html
-</!-->
+-->
 
 @section('content')
 <div class="container">

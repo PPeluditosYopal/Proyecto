@@ -4,12 +4,12 @@
 @php
 use App\Models\Especie;
 @endphp
-<!--->
+<!--
 
 La vista del registrar mascota, muestra al usuario un formulario para registrar la información de las mascotas.
 Este formulario apunta al RegistrarMascotaController, para validar, procesar y almacenar la información.
 
-</!--->
+--->
 
 <div class="container">
     <div class="row justify-content-center">

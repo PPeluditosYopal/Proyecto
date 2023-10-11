@@ -2,13 +2,13 @@
 
 
 @section('content')
-<!--->La vista del HOME, muestra al usuario los diferentes modulos de la plataforma y le permite interactuar con ellos.
+<!--La vista del HOME, muestra al usuario los diferentes modulos de la plataforma y le permite interactuar con ellos.
 
 
 Cada Modulo esta atado una una ruta especifica, la cual al dar click, cargara la vista correspondiente del modulo, dentro del home
 
 
-</!--->
+--->
 <div class="container-fluid col-xl-12">
     <div class="row justify-content-center">
         <div class="col-md-12">
