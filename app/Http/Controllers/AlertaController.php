@@ -8,6 +8,16 @@ use App\Http\Controllers\Alert;
 
 class AlertaController extends Controller
 {
+
+     /*
+    |--------------------------------------------------------------------------
+    | AlertaController
+    |--------------------------------------------------------------------------
+    | Este controlador registra la información de los posibles eventos de 
+    | de maltrato animal, estos una vez almacenados, se envian por medio del
+    | del servicio de mensajeria celular SMS, al número de telefono designado 
+    | por la fundación para este atender este tipo de casos.
+    */
     public function alerta()
     {
         return view('alerta');
@@ -32,7 +42,7 @@ public function show(Alerta $alerta)
             'dir_evento' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'evidencia' => ['required', 'string', 'max:255'],
-            'terminis' => ['required', 'string', 'max:255'],
+            'terminos' => ['required', 'string', 'max:255'],
 
         ]);
     }
@@ -80,7 +90,7 @@ public function show(Alerta $alerta)
 
         $response = $client->sms()->send(
          new \Vonage\SMS\Message\SMS("573024624027", env("BRAND_NAME"), 
-                'Se acaba de generar una alerta sobre maltrato animal: '
+                'Se Generado una alerta de maltrato animal: '
                 .' Nombre: '.$Alerta->nombre 
                 .'. Teléfono: '.$Alerta->telefono
                 .'. Dirección del evento: '.$Alerta->dir_evento

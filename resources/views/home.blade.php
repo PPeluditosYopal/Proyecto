@@ -2,6 +2,13 @@
 
 
 @section('content')
+<!--->La vista del HOME, muestra al usuario los diferentes modulos de la plataforma y le permite interactuar con ellos.
+
+
+Cada Modulo esta atado una una ruta especifica, la cual al dar click, cargara la vista correspondiente del modulo, dentro del home
+
+
+</!--->
 <div class="container-fluid col-xl-12">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -17,15 +24,15 @@
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
-                             <a class="navbar-brand" href="{{ route('registromascota')}}">Solicitud Adopción  <img src="{{asset ('icon/solicitud.png') }}" style="width: 30px"></a>
+                             <a class="navbar-brand" href="{{ route('adopcion') }}">Solicitud Adopción  <img src="{{asset ('icon/solicitud.png') }}" style="width: 30px"></a>
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
-                             <a class="navbar-brand" href="{{ route('alerta')}}">Alerta Maltrato  <img src="{{asset ('icon/sirena.png') }}" style="width: 30px"></a>
+                             <a class="navbar-brand" href="{{ route('alerta') }}">Alerta Maltrato  <img src="{{asset ('icon/sirena.png') }}" style="width: 30px"></a>
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Estadistica  <img src="{{asset ('icon/analitica.png') }}" style="width: 30px"></a>
+                            <a class="navbar-brand" href="{{ route('estadistica') }}">Estadistica  <img src="{{asset ('icon/analitica.png') }}" style="width: 30px"></a>
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>

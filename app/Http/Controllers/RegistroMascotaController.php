@@ -4,22 +4,35 @@ namespace App\Http\Controllers;
 use App\Providers\RouteServiceProvider;
 use App\Perros;
 use App\Models\Especie;
+use App\Models\Raza;
 use App\Models\RegistroMascota;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RegMascota;
 
 class RegistroMascotaController extends Controller
 {
+
+    /*
+    |--------------------------------------------------------------------------
+    | RegistroMascotaController
+    |--------------------------------------------------------------------------
+    | Este controlador maneja el registro de nuevas mascotas así como su
+    | validación y creación. Por defecto, este controlador utiliza un rasgo para
+    | proporcione esta funcionalidad sin requerir ningún código adicional.
+    |
+    */
+
 public function registromascota()
     {
         return view('registromascota');
     }
     public function index()
     {
-        $registromascota = RegistroMascota::all();
-        return view('registromascota', compact('registromascota'));
         $especies = Especie::all();
-return view('/registromascota')->with(['especies' => $especies, ]);
+        $razas = Raza::all();
+        //return view('/registromascota')->with(['especies' => $especies, ]);
+        $registromascota = RegistroMascota::all();
+        return view('registromascota', compact('registromascota', ['especies', 'razas' ,'registromascota']));
     }
 
 public function show(RegistroMascota $registromascota)
@@ -99,8 +112,10 @@ public function show(RegistroMascota $registromascota)
         $RegistroMascota->save();
         
         $especies = Especie::all();
-        return view('/registromascota')->with(['especies' => $especies, ]);
-
+        $razas = Raza::all();
+        //return view('/registromascota')->with(['especies' => $especies, ]);
+        $registromascota = RegistroMascota::all();
+        return view('registromascota', compact('registromascota', ['especies', 'razas' ,'registromascota']));
         /*dd($request->all());*/
         /*return view ('registromascota');*/
         return back()->with('registroexitoso', 'Registrada nueva Mascota con Exito!');

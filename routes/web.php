@@ -10,8 +10,10 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PerrosController;
 use App\Http\Controllers\GatosController;
 use App\Http\Controllers\EspecieController;
+use App\Http\Controllers\RazaController;
 use App\Models\Especie;
-
+use App\Models\RegistroMascota;
+use App\Models\Raza;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,14 +68,18 @@ Route::post('/registromascota', 'App\Http\Controllers\RegistroMascotaController@
 Route::get('/registromascota', 'App\Http\Controllers\RegistroMascotaController@index')->name('registromascota');
 
 Route::get('/estadistica', 'App\Http\Controllers\EstadisticaController@index')->name('estadistica');
-
-Route::get('/registromascota', function(){
-$especies = Especie::all();
-return view('/registromascota')->with(['especies' => $especies, ]);
+Route::get('especies/{id}/razas', function ($id) {
+    $razas = Raza::where('especies_id', $id)->get();
+    return response()->json($razas);
 });
 
-Route::get('especies/{id}/razas', function ($id) {
+Route::get('/registromascota', function(){
+        
+        $especies = Especie::all();
+        $razas = Raza::all();
+        //return view('/registromascota')->with(['especies' => $especies, ]);
+        $registromascota = RegistroMascota::all();
+        return view('registromascota', compact('registromascota', ['especies', 'razas', 'registromascota']));
 
-    $especie = Especie::find($id);
-return Raza::where('especies_id', $especie->id)->get();
+
 });

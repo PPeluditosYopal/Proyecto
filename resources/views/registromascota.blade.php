@@ -2,11 +2,14 @@
 
 @section('content')
 @php
-
 use App\Models\Especie;
-
 @endphp
+<!--->
 
+La vista del registrar mascota, muestra al usuario un formulario para registrar la información de las mascotas.
+Este formulario apunta al RegistrarMascotaController, para validar, procesar y almacenar la información.
+
+</!--->
 
 <div class="container">
     <div class="row justify-content-center">
@@ -23,7 +26,7 @@ use App\Models\Especie;
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
-                             <a class="navbar-brand" href="#">Solicitud Adopción  <img src="{{asset ('icon/solicitud.png') }}" style="width: 30px"></a>
+                             <a class="navbar-brand" href="{{ route('adopcion') }}">Solicitud Adopción  <img src="{{asset ('icon/solicitud.png') }}" style="width: 30px"></a>
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
@@ -31,7 +34,7 @@ use App\Models\Especie;
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Estadistica  <img src="{{asset ('icon/analitica.png') }}" style="width: 30px"></a>
+                            <a class="navbar-brand" href="{{ route('estadistica') }}">Estadistica  <img src="{{asset ('icon/analitica.png') }}" style="width: 30px"></a>
                             <button class="navbar-toggler hover-overlay" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
@@ -61,7 +64,7 @@ use App\Models\Especie;
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                <div class="col-sm-6">
+                                 <div class="col-sm-6">
                                         <label for="especie">Especie</label>
                                         <select id="especie" onchange="loadRazas(this)" class="form-control" name='especie' value="{{ old('especie') }}">
                                             <option value="">Seleccione la especie de la mascota</option>
@@ -74,6 +77,7 @@ use App\Models\Especie;
                                         <label for="enfermedades">Enfermedades</label>
                                         <select class="form-control" name='enfermedades' r="Contact Number" value="{{ old('enfermedades') }}">
                                             <option value="">Seleccione una enfermedad</option>
+                                            <option value="Moquillo">Ninguna</option>
                                             <option value="Moquillo">Moquillo</option>
                                             <option value="Hepatitis canina">Hepatitis canina</option>
                                             <option value="Leptospirosis">Leptospirosis</option>
@@ -104,6 +108,10 @@ use App\Models\Especie;
                                     <div class="col-sm-6">
                                         <label for="raza">Raza</label>
                                         <select id="raza" class="form-control" name='raza' value="{{ old('raza') }}">
+                                            <option value="">Seleccione la raza de su mascota</option>
+                                            <!-- @foreach ($razas as $raza)
+                                                <option value="{{ $raza->id}}">{{ $raza->raza}}</option>
+                                            @endforeach -->
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
@@ -137,8 +145,18 @@ use App\Models\Especie;
                                 </div>
                                     <div class="form-group row">
                                     <div class="col-sm-6">
-                                        <label for="inputPostalCode">Ciclo vacunas</label>
-                                        <input type="text" class="form-control" name='ciclo_vacunas' value="{{ old('ciclo_vacunas') }}">
+                                        <label for="vacunas">Esquema de vacunación</label>
+                                        <select class="form-control" name='ciclo_vacunas' value="{{ old('ciclo_vacunas') }}">
+                                            <option value="">----Esquema Vacunación Canina---</option>
+                                            <option value="6-8 Semanas (Parvovirosis)">6-8 Semanas (Parvovirosis)</option>
+                                            <option value="8-10 Semanas (Polivalente canina)">8-10 Semanas (Polivalente canina)</option>
+                                            <option value="12-14 Semanas (Antirrábica)">12-14 Semanas (Antirrábica)</option>
+                                            <option value="Refuerzo Anual (Poli/Traque/Rabia)">Refuerzo Anual (Poli/Traque/Rabia)</option>
+                                            <option value="">----Esquema Vacunación Felina---</option>
+                                            <option value="8 Semanas (Tripe Felina)">8 Semanas (Tripe Felina)</option>
+                                            <option value="10-11 Semanas (Tripe Felina)">10-11 Semanas (Tripe Felina)</option>
+                                            <option value="12 Semanas (RABIA)">12 Semanas (RABIA)</option>
+                                        </select>
                                     </div>
                                      <div class="col-sm-6">
                                         <label for="inputContactNumber">Dirección</label>
@@ -176,10 +194,17 @@ use App\Models\Especie;
             </div>
             @endif
               </div>
-              <script>
+               <script>
                   function loadRazas(especiesSelect) {
                   let especieId = especiesSelect.value;
-                  fetch('especies/${especieID}/razas').then(function (response){
+                  console.log('especies/'+especieId+'/razas')
+                  fetch('especies/'+especieId+'/razas')
+                //   .then((response)=>{
+                //     console.log(response.json())
+                //     buildRazaSelect(response.json());
+                //   })
+                  .then(function (response){
+                    console.log(response.body)
                   return response.json();
 
                   })
@@ -191,7 +216,9 @@ use App\Models\Especie;
         function buildRazaSelect(jsonTeams){
 
             let razaSelect = document.getElementById('raza');
-            jsonTemas.forEach(function (team) {
+            while(razaSelect.options.length>0)
+                razaSelect.remove(0);
+            jsonTeams.forEach(function (team) {
 
             let optionTag = document.createElement('option');
             optionTag.value =team.id;
